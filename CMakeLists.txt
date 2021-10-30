@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-pedantic -Wall -Wextra -Werror -Wconversion -Wsign-conversion -Wold-style-cast -g")
 
-# C++ packages
+# packages
 find_package(Qt5 COMPONENTS Widgets Quick Core REQUIRED)
 find_package(Qt5QuickCompiler)
 
@@ -18,11 +18,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # source files
 set(SRC_FILES src/Quote.cpp)
+qt5_wrap_cpp(MOC_FILES include/QuoteListModel.hpp)
 qtquick_compiler_add_resources(RESOURCES qml/main.qrc)
 
 # headers
 include_directories(include)
 
-#executable
-add_executable(Wikiquote-cpp-client src/main.cpp ${RESOURCES} ${SRC_FILES})
+# executable
+add_executable(Wikiquote-cpp-client src/main.cpp src/QuoteListModel.cpp ${SRC_FILES} ${RESOURCES} ${MOC_FILES})
 target_link_libraries(Wikiquote-cpp-client PUBLIC Qt5::Widgets Qt5::Quick Qt5::Core)

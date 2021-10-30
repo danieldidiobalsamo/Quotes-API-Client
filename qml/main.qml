@@ -35,17 +35,21 @@ ApplicationWindow{
 			}
 		}
 
-		Text{
-			id: quote
+		ListView{
+
+			id: searchResults
 
 			width: parent.width
 			height: parent.height
 
-			wrapMode: Text.Wrap
-			font.pointSize : 20
-			textFormat: Text.AutoText
+			model : quotesModel
 
-			text: "test"
+			delegate:Text{
+
+				font.pointSize : 15
+
+				text: "author: " + author + "| " + quoteText
+			}
 		}
 	}
 
