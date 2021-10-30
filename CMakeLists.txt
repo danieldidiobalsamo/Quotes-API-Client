@@ -17,8 +17,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # source files
+set(SRC_FILES src/Quote.cpp)
 qtquick_compiler_add_resources(RESOURCES qml/main.qrc)
 
+# headers
+include_directories(include)
+
 #executable
-add_executable(Wikiquote-cpp-client src/main.cpp ${RESOURCES})
+add_executable(Wikiquote-cpp-client src/main.cpp ${RESOURCES} ${SRC_FILES})
 target_link_libraries(Wikiquote-cpp-client PUBLIC Qt5::Widgets Qt5::Quick Qt5::Core)
