@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-pedantic -Wall -Wextra -Werror -Wconversion -Wsign-conversion -Wold-style-cast -g")
 
 # packages
-find_package(Qt5 COMPONENTS Widgets Quick Core REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Quick Core Network REQUIRED)
 find_package(Qt5QuickCompiler)
 
 # CMake tools
@@ -26,4 +26,4 @@ include_directories(include)
 
 # executable
 add_executable(Wikiquote-cpp-client src/main.cpp src/QuoteListModel.cpp ${SRC_FILES} ${RESOURCES} ${MOC_FILES})
-target_link_libraries(Wikiquote-cpp-client PUBLIC Qt5::Widgets Qt5::Quick Qt5::Core)
+target_link_libraries(Wikiquote-cpp-client PUBLIC Qt5::Widgets Qt5::Quick Qt5::Core Qt5::Network)
