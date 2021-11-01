@@ -4,7 +4,7 @@
 #include <QQmlApplicationEngine>
 #include "QuoteListModel.hpp"
 
-class NetworkManager;
+class QuotesAPI;
 class QuoteListModel;
 class QQmlContext;
 class QString;

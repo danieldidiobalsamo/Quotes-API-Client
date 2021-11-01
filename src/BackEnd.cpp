@@ -1,5 +1,5 @@
 #include "BackEnd.hpp"
-#include "NetworkManager.hpp"
+#include "QuotesAPI.hpp"
 
 #include <QQmlContext>
 #include <QString>
@@ -27,6 +27,6 @@ QQmlApplicationEngine& BackEnd::getEngine()
 
 QString BackEnd::getQuote(QString author)
 {
-	NetworkManager* networkManager = NetworkManager::getInstance();
-	return networkManager->searchByAuthor(author);
+	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
+	return QuotesAPI->searchByAuthor(author);
 }

@@ -18,10 +18,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # source files
 set(SRC_FILES src/Quote.cpp)
-set(QT_RELATED_SRC src/QuoteListModel.cpp src/NetworkManager.cpp src/BackEnd.cpp)
+set(QT_RELATED_SRC src/QuoteListModel.cpp src/QuotesAPI.cpp src/BackEnd.cpp)
 
 # MOC
-qt5_wrap_cpp(MOC_FILES include/QuoteListModel.hpp include/NetworkManager.hpp include/BackEnd.hpp)
+qt5_wrap_cpp(MOC_FILES include/QuoteListModel.hpp include/QuotesAPI.hpp include/BackEnd.hpp)
 qtquick_compiler_add_resources(RESOURCES qml/main.qrc)
 
 # headers
