@@ -32,6 +32,10 @@ ApplicationWindow{
 			Button{
 				id: searchButton
 				text: "Search"
+				onClicked: {
+					var quote = backend.getQuote(authorName.text)
+					console.log(quote)
+				}
 			}
 		}
 

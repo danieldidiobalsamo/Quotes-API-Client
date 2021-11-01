@@ -24,3 +24,9 @@ QQmlApplicationEngine& BackEnd::getEngine()
 {
 	return _engine;
 }
+
+QString BackEnd::getQuote(QString author)
+{
+	NetworkManager* networkManager = NetworkManager::getInstance();
+	return networkManager->searchByAuthor(author);
+}

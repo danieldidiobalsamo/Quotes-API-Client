@@ -23,4 +23,5 @@ class NetworkManager : public QObject
 		NetworkManager& operator=(const NetworkManager& manager)=delete;
 
 		static NetworkManager* getInstance();
+		QString searchByAuthor(QString author);
 };

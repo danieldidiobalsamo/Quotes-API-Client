@@ -23,3 +23,8 @@ NetworkManager::~NetworkManager()
 {
 	delete _networkManager;
 }
+
+QString NetworkManager::searchByAuthor(QString author)
+{
+	return author;
+}
