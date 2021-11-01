@@ -18,12 +18,15 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # source files
 set(SRC_FILES src/Quote.cpp)
-qt5_wrap_cpp(MOC_FILES include/QuoteListModel.hpp)
+set(QT_RELATED_SRC src/QuoteListModel.cpp src/NetworkManager.cpp)
+
+# MOC
+qt5_wrap_cpp(MOC_FILES include/QuoteListModel.hpp include/NetworkManager.hpp)
 qtquick_compiler_add_resources(RESOURCES qml/main.qrc)
 
 # headers
 include_directories(include)
 
 # executable
-add_executable(Wikiquote-cpp-client src/main.cpp src/QuoteListModel.cpp ${SRC_FILES} ${RESOURCES} ${MOC_FILES})
+add_executable(Wikiquote-cpp-client src/main.cpp ${QT_RELATED_SRC} ${SRC_FILES} ${RESOURCES} ${MOC_FILES})
 target_link_libraries(Wikiquote-cpp-client PUBLIC Qt5::Widgets Qt5::Quick Qt5::Core Qt5::Network)
