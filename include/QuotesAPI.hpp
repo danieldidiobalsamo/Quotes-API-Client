@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QString>
 
 class QNetworkAccessManager;
 
@@ -15,6 +16,8 @@ class QuotesAPI : public QObject
 		static QuotesAPI *_quotesAPI;
 		QNetworkAccessManager *_accessManager;
 
+		const QString _rawAPIURL = QString("https://kaamelott.chaudie.re/api");
+
 		QuotesAPI();
 
 	public : 
@@ -23,5 +26,5 @@ class QuotesAPI : public QObject
 		QuotesAPI& operator=(const QuotesAPI& manager)=delete;
 
 		static QuotesAPI* getInstance();
-		QString searchByAuthor(QString author);
+		QString searchByCharacter(QString character);
 };

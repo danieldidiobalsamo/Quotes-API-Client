@@ -1,6 +1,10 @@
 #include "QuotesAPI.hpp"
 
 #include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QNetworkReply>
+#include <QDebug>
 
 QuotesAPI* QuotesAPI::_quotesAPI = nullptr;
 
@@ -24,7 +28,28 @@ QuotesAPI::~QuotesAPI()
 	delete _quotesAPI;
 }
 
-QString QuotesAPI::searchByAuthor(QString author)
-{
-	return author;
+QString QuotesAPI::searchByCharacter(QString character)
+{	
+	// TODO : use QThread
+
+	QString urlStr = _rawAPIURL + QString("/all/personnage/") + character;
+	QUrl url(urlStr);
+
+	QNetworkRequest request(url);
+	QNetworkReply *reply = _accessManager->get(request);
+
+	connect(reply, &QNetworkReply::finished, [=](){
+
+		if(reply->error() == QNetworkReply::NoError)
+		{
+			QByteArray response = reply->readAll();
+			qDebug() << qPrintable(response);
+		}
+		else
+		{
+			qDebug() << reply->errorString();
+		}
+	});	
+
+	return character;// for testing purpose only
 }

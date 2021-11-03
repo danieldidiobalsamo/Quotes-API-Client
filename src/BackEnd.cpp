@@ -28,5 +28,5 @@ QQmlApplicationEngine& BackEnd::getEngine()
 QString BackEnd::getQuote(QString author)
 {
 	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
-	return QuotesAPI->searchByAuthor(author);
+	return QuotesAPI->searchByCharacter(author);
 }
