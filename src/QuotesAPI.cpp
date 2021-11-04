@@ -5,6 +5,7 @@
 #include <QUrl>
 #include <QNetworkReply>
 #include <QDebug>
+#include <QEventLoop>
 
 QuotesAPI* QuotesAPI::_quotesAPI = nullptr;
 
@@ -31,25 +32,18 @@ QuotesAPI::~QuotesAPI()
 QString QuotesAPI::searchByCharacter(QString character)
 {	
 	// TODO : use QThread
+	// TODO : parse JSON reply
 
 	QString urlStr = _rawAPIURL + QString("/all/personnage/") + character;
 	QUrl url(urlStr);
 
 	QNetworkRequest request(url);
 	QNetworkReply *reply = _accessManager->get(request);
+	QEventLoop loop;
 
-	connect(reply, &QNetworkReply::finished, [=](){
+	connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);	
+	loop.exec();
 
-		if(reply->error() == QNetworkReply::NoError)
-		{
-			QByteArray response = reply->readAll();
-			qDebug() << qPrintable(response);
-		}
-		else
-		{
-			qDebug() << reply->errorString();
-		}
-	});	
 
-	return character;// for testing purpose only
+	return reply->readAll();// for testing purpose only
 }
