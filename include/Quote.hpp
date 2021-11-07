@@ -19,10 +19,10 @@ class Quote
 		Quote& operator=(const Quote &quote);
 		~Quote();
 
-		QString getAuthor() const;
+		QString getCharacter() const;
 		QString getText() const;
 
-		void setAuthor(const QString& author);
+		void setCharacter(const QString& character);
 		void setText(const QString& text);
 
 		friend QDebug operator<<(QDebug debug, const Quote &quote);

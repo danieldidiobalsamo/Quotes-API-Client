@@ -19,7 +19,7 @@ class QuoteListModel : public QAbstractListModel
 	public:
 
 	enum QuoteRoles{
-		AuthorRole = Qt::UserRole + 1,
+		CharacterRole = Qt::UserRole + 1,
 		TextRole
 	};
 

@@ -25,7 +25,7 @@ ApplicationWindow{
 			}
 
 			TextField{
-				id: authorName
+				id: characterName
 				text: ""
 			}
 
@@ -33,7 +33,7 @@ ApplicationWindow{
 				id: searchButton
 				text: "Search"
 				onClicked: {
-					backend.getQuote(authorName.text)
+					backend.getQuote(characterName.text)
 				}
 			}
 		}
@@ -51,7 +51,7 @@ ApplicationWindow{
 
 				font.pointSize : 15
 
-				text: author + ": " + quoteText
+				text: character + ": " + quoteText
 			}
 		}
 	}

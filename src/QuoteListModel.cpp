@@ -21,7 +21,7 @@ int QuoteListModel::rowCount(const QModelIndex &parent) const
 QHash<int, QByteArray> QuoteListModel::roleNames() const
 {
 	QHash<int, QByteArray> roles;
-	roles[AuthorRole] = "author";
+	roles[CharacterRole] = "character";
 	roles[TextRole] = "quoteText";
 
 	return roles;
@@ -38,8 +38,8 @@ QVariant QuoteListModel::data(const QModelIndex &index, int role) const
 
 	switch(role)
 	{
-		case AuthorRole:
-			return quote.getAuthor();
+		case CharacterRole:
+			return quote.getCharacter();
 		case TextRole:
 			return quote.getText();
 		default:
@@ -55,8 +55,8 @@ bool QuoteListModel::setData(const QModelIndex &index, const QVariant &value, in
 	{
 		switch(role)
 		{
-			case AuthorRole:
-				_quotes[row].setAuthor(value.toString());
+			case CharacterRole:
+				_quotes[row].setCharacter(value.toString());
 				break;
 			case TextRole:
 				_quotes[row].setText(value.toString());

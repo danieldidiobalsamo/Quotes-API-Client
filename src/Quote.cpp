@@ -30,7 +30,7 @@ Quote::~Quote()
 
 }
 
-QString Quote::getAuthor() const
+QString Quote::getCharacter() const
 {
 	return _character;
 }
@@ -39,9 +39,9 @@ QString Quote::getText() const
 	return _text;
 }
 
-void Quote::setAuthor(const QString& author)
+void Quote::setCharacter(const QString& character)
 {
-	_character = author;
+	_character = character;
 }
 void Quote::setText(const QString& text)
 {
