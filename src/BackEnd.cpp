@@ -7,18 +7,8 @@
 
 BackEnd::BackEnd() : _quotesModel(), _engine(), _context(_engine.rootContext())
 {
-	initModel();
-	_engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
-}
-
-void BackEnd::initModel()
-{
-	_quotesModel.addQuote(Quote("author1", "text1"));
-	_quotesModel.addQuote(Quote("author2", "text2"));
-	_quotesModel.addQuote(Quote("author3", "text3"));
-	_quotesModel.addQuote(Quote("author4", "text4"));
-
 	_context->setContextProperty("quotesModel", &_quotesModel);
+	_engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 }
 
 QQmlApplicationEngine& BackEnd::getEngine()
@@ -26,13 +16,11 @@ QQmlApplicationEngine& BackEnd::getEngine()
 	return _engine;
 }
 
-void BackEnd::getQuote(QString author)
+void BackEnd::getQuote(QString character)
 {
 	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
-	QList<Quote> quotes = QuotesAPI->searchByCharacter(author);
+	QList<Quote> quotes = QuotesAPI->searchByCharacter(character);
 
 	for(Quote quote: quotes)
 		qDebug() << quote;
-
-
 }
