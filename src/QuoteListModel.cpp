@@ -49,3 +49,8 @@ void QuoteListModel::addQuote(const Quote &quote)
 {
 	_quotes.append(quote);
 }
+
+void QuoteListModel::addQuoteList(const QList<Quote> &list)
+{
+	_quotes.append(list);
+}

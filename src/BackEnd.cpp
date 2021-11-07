@@ -21,6 +21,5 @@ void BackEnd::getQuote(QString character)
 	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
 	QList<Quote> quotes = QuotesAPI->searchByCharacter(character);
 
-	for(Quote quote: quotes)
-		qDebug() << quote;
+	_quotesModel.addQuoteList(quotes);
 }

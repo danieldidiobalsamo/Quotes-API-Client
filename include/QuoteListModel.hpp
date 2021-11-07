@@ -33,5 +33,6 @@ class QuoteListModel : public QAbstractListModel
 
 
 	void addQuote(const Quote &quote);
+	void addQuoteList(const QList<Quote> &list);
 
 };
