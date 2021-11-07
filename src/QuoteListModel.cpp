@@ -1,5 +1,7 @@
 #include "QuoteListModel.hpp"
 
+#include <QAbstractItemModel>
+
 QuoteListModel::QuoteListModel(QObject *parent) : QAbstractListModel(parent)
 {
 
@@ -45,12 +47,84 @@ QVariant QuoteListModel::data(const QModelIndex &index, int role) const
 	}
 }
 
+bool QuoteListModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+	int row = index.row();
+
+	if(row >= 0 && row < _quotes.length())
+	{
+		switch(role)
+		{
+			case AuthorRole:
+				_quotes[row].setAuthor(value.toString());
+				break;
+			case TextRole:
+				_quotes[row].setText(value.toString());
+				break;
+		}
+
+		emit dataChanged(QModelIndex(),QModelIndex());
+	}
+
+	return true;
+}
+
+bool QuoteListModel::insertRows(int row, int count, const QModelIndex &parent)
+{
+	if(row < 0 || count < 0)
+		return false;
+
+	if(count == 0)
+		return true;
+
+	if(row > rowCount(parent))
+		row = rowCount(parent);
+
+	beginInsertRows(QModelIndex(), row, row+count-1);
+	endInsertRows();
+	
+	emit dataChanged(QModelIndex(),QModelIndex());
+
+    return true;
+}
+
+bool QuoteListModel::removeRows(int row, int count, const QModelIndex &parent) 
+{
+
+    if(row < 0 || count < 0 || rowCount(parent) <= 0)
+		return false;
+
+    if(count == 0)
+		return true;
+
+    if(row >= rowCount(parent))
+		row = rowCount(parent) - 1;
+
+	beginRemoveRows(QModelIndex(), row, row+count-1);
+	endRemoveRows();
+
+	emit dataChanged(QModelIndex(),QModelIndex());
+
+    return true;
+}
+
 void QuoteListModel::addQuote(const Quote &quote)
 {
+	beginInsertRows(QModelIndex(), _quotes.size(), _quotes.size());
 	_quotes.append(quote);
+	endInsertRows();
 }
 
 void QuoteListModel::addQuoteList(const QList<Quote> &list)
 {
+	beginInsertRows(QModelIndex(), _quotes.size(), _quotes.size() + list.size() - 1);
 	_quotes.append(list);
+	endInsertRows();
+}
+
+void QuoteListModel::clear()
+{
+	beginRemoveRows(QModelIndex(), 0, _quotes.size());
+	_quotes.clear();
+	endRemoveRows();
 }

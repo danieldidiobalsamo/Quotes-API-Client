@@ -22,5 +22,8 @@ class Quote
 		QString getAuthor() const;
 		QString getText() const;
 
+		void setAuthor(const QString& author);
+		void setText(const QString& text);
+
 		friend QDebug operator<<(QDebug debug, const Quote &quote);
 };

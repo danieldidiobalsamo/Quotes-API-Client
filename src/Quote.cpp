@@ -39,6 +39,15 @@ QString Quote::getText() const
 	return _text;
 }
 
+void Quote::setAuthor(const QString& author)
+{
+	_character = author;
+}
+void Quote::setText(const QString& text)
+{
+	_text = text;
+}
+
 QDebug operator<<(QDebug debug, const Quote &quote)
 {
 	debug << quote._character << " " << quote._text;

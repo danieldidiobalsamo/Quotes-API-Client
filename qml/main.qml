@@ -51,7 +51,7 @@ ApplicationWindow{
 
 				font.pointSize : 15
 
-				text: "author: " + author + "| " + quoteText
+				text: author + ": " + quoteText
 			}
 		}
 	}
