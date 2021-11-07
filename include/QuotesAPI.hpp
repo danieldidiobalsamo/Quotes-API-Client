@@ -4,6 +4,7 @@
 #include <QString>
 
 class QNetworkAccessManager;
+class Quote;
 
 
 // singleton
@@ -26,5 +27,5 @@ class QuotesAPI : public QObject
 		QuotesAPI& operator=(const QuotesAPI& manager)=delete;
 
 		static QuotesAPI* getInstance();
-		QString searchByCharacter(QString character);
+		QList<Quote> searchByCharacter(QString character);
 };

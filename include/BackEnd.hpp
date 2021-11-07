@@ -26,7 +26,7 @@ class BackEnd : public QObject
 
 		void initModel();
 
-		Q_INVOKABLE QString getQuote(QString author);
+		Q_INVOKABLE void getQuote(QString author);
 
 		QQmlApplicationEngine& getEngine();		
 

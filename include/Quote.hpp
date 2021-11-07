@@ -1,18 +1,19 @@
 #pragma once
 
 #include <QString>
+#include <QDebug>
 
 class Quote
 {
 	private: 
 
-		QString _author;
+		QString _character;
 		QString _text;
 
 	public:
 
 		Quote()=delete;
-		Quote(const QString author, const QString text);
+		Quote(const QString character, const QString text);
 		Quote(const Quote& quote);
 		
 		Quote& operator=(const Quote &quote);
@@ -20,4 +21,6 @@ class Quote
 
 		QString getAuthor() const;
 		QString getText() const;
+
+		friend QDebug operator<<(QDebug debug, const Quote &quote);
 };

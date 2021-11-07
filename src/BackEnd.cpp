@@ -3,6 +3,7 @@
 
 #include <QQmlContext>
 #include <QString>
+#include <QDebug>
 
 BackEnd::BackEnd() : _quotesModel(), _engine(), _context(_engine.rootContext())
 {
@@ -25,8 +26,13 @@ QQmlApplicationEngine& BackEnd::getEngine()
 	return _engine;
 }
 
-QString BackEnd::getQuote(QString author)
+void BackEnd::getQuote(QString author)
 {
 	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
-	return QuotesAPI->searchByCharacter(author);
+	QList<Quote> quotes = QuotesAPI->searchByCharacter(author);
+
+	for(Quote quote: quotes)
+		qDebug() << quote;
+
+
 }
