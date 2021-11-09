@@ -24,16 +24,16 @@ ApplicationWindow{
 				font.pointSize : 20
 			}
 
-			TextField{
-				id: characterName
-				text: ""
+			ComboBox{
+				id : characterName
+				model: CharactersNameModel{}
 			}
 
 			Button{
 				id: searchButton
 				text: "Search"
 				onClicked: {
-					backend.getQuote(characterName.text)
+					backend.getQuote(characterName.currentText)
 				}
 			}
 		}
