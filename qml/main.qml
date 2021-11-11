@@ -6,10 +6,21 @@ ApplicationWindow{
 	id: mainWindow
 	visible: true
 
-	width: Screen.desktopAvailableWidth *0.4
-	height: Screen.desktopAvailableHeight *0.4
+	visibility: "FullScreen"
 
 	color: "lightgray"
+
+	Button{
+		id: exitButton
+		text: "Exit"
+
+		anchors.right : parent.right
+		anchors.top : parent.top
+
+		anchors.margins: 20
+
+		onClicked: Qt.quit()
+	}
 
 	Column{
 		anchors.fill: parent
@@ -17,12 +28,9 @@ ApplicationWindow{
 		Row{
 
 			id: searchRow
-			width: parent.width
 
-			Text{
-				text: "name : "
-				font.pointSize : 20
-			}
+			spacing : 20
+			padding : 20
 
 			ComboBox{
 				id : characterName
