@@ -55,11 +55,13 @@ ApplicationWindow{
 
 			model : quotesModel
 
-			delegate:Text{
-
-				font.pointSize : 15
+			delegate: Text{
 
 				text: character + ": " + quoteText
+
+				width: parent.width
+				font.pointSize : 15
+				wrapMode: Text.Wrap
 			}
 		}
 	}
