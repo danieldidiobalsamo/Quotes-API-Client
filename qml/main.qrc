@@ -2,5 +2,6 @@
 	<qresource prefix="/qml">
 		<file>main.qml</file>
 		<file>CharactersNameModel.qml</file>
+		<file>SeasonListModel.qml</file>
 	</qresource>
 </RCC>

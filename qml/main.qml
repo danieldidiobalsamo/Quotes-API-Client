@@ -37,6 +37,11 @@ ApplicationWindow{
 				model: CharactersNameModel{}
 			}
 
+			ComboBox{
+				id : seasonList
+				model: SeasonListModel{}
+			}
+
 			Button{
 				id: searchButton
 				text: "Search"
