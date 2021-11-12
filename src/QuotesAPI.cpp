@@ -34,13 +34,18 @@ QuotesAPI::~QuotesAPI()
 	delete _quotesAPI;
 }
 
-QList<Quote> QuotesAPI::searchByCharacter(QString character)
+QList<Quote> QuotesAPI::search(QString character, QString season)
 {	
 	// TODO : use QThread
 
 	QList<Quote> quotesList;
+	QString urlStr = _rawAPIURL + "/all";
 
-	QString urlStr = _rawAPIURL + QString("/all/personnage/") + character;
+	if(season != "All")
+		urlStr += QString("/livre/") + season;
+
+	urlStr += QString("/personnage/") + character;
+
 	QUrl url(urlStr);
 
 	QNetworkRequest request(url);
@@ -56,7 +61,7 @@ QList<Quote> QuotesAPI::searchByCharacter(QString character)
 
 	if(json.empty())
 	{
-		quotesList.append(Quote("No results", ""));
+		quotesList.append(Quote("No results", "", ""));
 		return quotesList;
 	}
 	
@@ -67,9 +72,10 @@ QList<Quote> QuotesAPI::searchByCharacter(QString character)
 		QJsonObject quoteObj = quoteVal.toObject();
 
 		const QString author = quoteObj["infos"].toObject()["personnage"].toString();
+		const QString season = quoteObj["infos"].toObject()["saison"].toString();
 		const QString text = quoteObj["citation"].toString();
 
-		Quote quote(author, text);
+		Quote quote(author, text, season);
 		quotesList.append(quote);
 	}
 

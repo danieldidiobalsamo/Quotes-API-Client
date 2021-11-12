@@ -20,7 +20,8 @@ class QuoteListModel : public QAbstractListModel
 
 	enum QuoteRoles{
 		CharacterRole = Qt::UserRole + 1,
-		TextRole
+		TextRole,
+		SeasonRole
 	};
 
 

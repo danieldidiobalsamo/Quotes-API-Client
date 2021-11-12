@@ -16,10 +16,10 @@ QQmlApplicationEngine& BackEnd::getEngine()
 	return _engine;
 }
 
-void BackEnd::getQuote(QString character)
+void BackEnd::getQuote(QString character, QString season)
 {
 	QuotesAPI* QuotesAPI = QuotesAPI::getInstance();
-	QList<Quote> quotes = QuotesAPI->searchByCharacter(character);
+	QList<Quote> quotes = QuotesAPI->search(character, season);
 
 	_quotesModel.clear();
 	_quotesModel.addQuoteList(quotes);

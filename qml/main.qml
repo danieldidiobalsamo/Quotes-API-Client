@@ -46,7 +46,7 @@ ApplicationWindow{
 				id: searchButton
 				text: "Search"
 				onClicked: {
-					backend.getQuote(characterName.currentText)
+					backend.getQuote(characterName.currentText, seasonList.currentText)
 				}
 			}
 		}
@@ -66,7 +66,7 @@ ApplicationWindow{
 
 			delegate: Text{
 
-				text: character + ": " + quoteText
+				text: character + " (" + season + ") : " + quoteText
 
 				width: parent.width
 				font.pointSize : 15

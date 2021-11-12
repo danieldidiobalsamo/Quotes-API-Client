@@ -24,7 +24,7 @@ class BackEnd : public QObject
 		BackEnd(const BackEnd& backend)=delete;
 		BackEnd& operator=(const BackEnd& backend)=delete;
 
-		Q_INVOKABLE void getQuote(QString character);
+		Q_INVOKABLE void getQuote(QString character, QString season);
 
 		QQmlApplicationEngine& getEngine();		
 

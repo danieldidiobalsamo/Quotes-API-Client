@@ -23,6 +23,7 @@ QHash<int, QByteArray> QuoteListModel::roleNames() const
 	QHash<int, QByteArray> roles;
 	roles[CharacterRole] = "character";
 	roles[TextRole] = "quoteText";
+	roles[SeasonRole] = "season";
 
 	return roles;
 }
@@ -42,6 +43,8 @@ QVariant QuoteListModel::data(const QModelIndex &index, int role) const
 			return quote.getCharacter();
 		case TextRole:
 			return quote.getText();
+		case SeasonRole:
+			return quote.getSeason();
 		default:
 			return QVariant();
 	}
@@ -60,6 +63,9 @@ bool QuoteListModel::setData(const QModelIndex &index, const QVariant &value, in
 				break;
 			case TextRole:
 				_quotes[row].setText(value.toString());
+				break;
+			case SeasonRole:
+				_quotes[row].setSeason(value.toString());
 				break;
 		}
 

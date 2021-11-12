@@ -27,5 +27,5 @@ class QuotesAPI : public QObject
 		QuotesAPI& operator=(const QuotesAPI& manager)=delete;
 
 		static QuotesAPI* getInstance();
-		QList<Quote> searchByCharacter(QString character);
+		QList<Quote> search(QString character, QString season);
 };
