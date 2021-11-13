@@ -16,7 +16,7 @@ QuotesAPI* QuotesAPI::_quotesAPI = nullptr;
 
 QuotesAPI::QuotesAPI() // private
 {
-	_accessManager = new QNetworkAccessManager(this);
+
 }
 
 QuotesAPI* QuotesAPI::getInstance()
@@ -36,7 +36,7 @@ QuotesAPI::~QuotesAPI()
 
 QList<Quote> QuotesAPI::search(QString character, QString season)
 {	
-	// TODO : use QThread
+	QNetworkAccessManager *accessManager = new QNetworkAccessManager();
 
 	QList<Quote> quotesList;
 	QString urlStr = _rawAPIURL + "/all";
@@ -49,7 +49,7 @@ QList<Quote> QuotesAPI::search(QString character, QString season)
 	QUrl url(urlStr);
 
 	QNetworkRequest request(url);
-	QNetworkReply *reply = _accessManager->get(request);
+	QNetworkReply *reply = accessManager->get(request);
 	QEventLoop loop;
 
 	connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);	

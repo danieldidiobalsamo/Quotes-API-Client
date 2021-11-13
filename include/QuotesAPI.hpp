@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QThread>
 
 class QNetworkAccessManager;
 class Quote;
@@ -15,7 +16,6 @@ class QuotesAPI : public QObject
 	private: 
 
 		static QuotesAPI *_quotesAPI;
-		QNetworkAccessManager *_accessManager;
 
 		const QString _rawAPIURL = QString("https://kaamelott.chaudie.re/api");
 
