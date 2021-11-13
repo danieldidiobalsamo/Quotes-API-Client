@@ -16,7 +16,6 @@ class QuotesAPI : public QObject
 	private: 
 
 		static QuotesAPI *_quotesAPI;
-
 		const QString _rawAPIURL = QString("https://kaamelott.chaudie.re/api");
 
 		QuotesAPI();

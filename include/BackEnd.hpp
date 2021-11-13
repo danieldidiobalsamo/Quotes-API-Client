@@ -22,8 +22,8 @@ class BackEnd : public QObject
 		QQmlApplicationEngine _engine;
 		QQmlContext* _context;
 
-		QThread* thread;
-		RequestWorker* worker;
+		QThread* _requestThread;
+		RequestWorker* _requestWorker;
 
 	public: 
 		BackEnd();

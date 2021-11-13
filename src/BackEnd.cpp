@@ -12,18 +12,18 @@ BackEnd::BackEnd() : _quotesModel(), _engine(), _context(_engine.rootContext())
 	_context->setContextProperty("quotesModel", &_quotesModel);
 	_engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
 	
-	thread = new QThread();
+	_requestThread = new QThread();
 	
-	worker = new RequestWorker("", "");
-	worker->moveToThread(thread);	
+	_requestWorker = new RequestWorker("", "");
+	_requestWorker->moveToThread(_requestThread);	
 
 	QuotesAPI *api = QuotesAPI::getInstance();
-	api->moveToThread(thread);
+	api->moveToThread(_requestThread);
 	
-	connect(thread, SIGNAL(started()), worker, SLOT(process()));
-	connect(worker, SIGNAL(finished(QList<Quote>)), this, SLOT(updateModel(QList<Quote>)));
-	connect(worker, SIGNAL(finished(QList<Quote>)), thread, SLOT(quit()));
-	connect(thread, SIGNAL(finished()), thread, SLOT(quit()));
+	connect(_requestThread, &QThread::started, _requestWorker, &RequestWorker::process);
+	connect(_requestWorker, &RequestWorker::finished, this, &BackEnd::updateModel);
+	connect(_requestWorker, &RequestWorker::finished, _requestThread, &QThread::quit);
+	connect(_requestThread, &QThread::finished, _requestThread, &QThread::quit);
 }
 
 QQmlApplicationEngine& BackEnd::getEngine()
@@ -33,8 +33,8 @@ QQmlApplicationEngine& BackEnd::getEngine()
 
 void BackEnd::getQuote(QString character, QString season)
 {
-	worker->updateWorker(character, season);
-	thread->start();
+	_requestWorker->updateWorker(character, season);
+	_requestThread->start();
 }
 
 void BackEnd::updateModel(QList<Quote> quotes)
