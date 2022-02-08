@@ -2,15 +2,15 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "QuoteListModel.hpp"
 #include "BackEnd.hpp"
+#include "QuoteListModel.hpp"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-	QGuiApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
-	BackEnd backend;
-	backend.getEngine().rootContext()->setContextProperty("backend", &backend);
+    BackEnd backend;
+    backend.getEngine().rootContext()->setContextProperty("backend", &backend);
 
-	return app.exec();
+    return app.exec();
 }

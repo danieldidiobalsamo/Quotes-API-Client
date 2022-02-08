@@ -6,25 +6,24 @@
 #include "Quote.hpp"
 #include "QuotesAPI.hpp"
 
-class RequestWorker : public QObject
-{
-	Q_OBJECT
+class RequestWorker : public QObject {
+    Q_OBJECT
 
-	private: 
-		QString _character;
-		QString _season;
+private:
+    QString _character;
+    QString _season;
 
-	public :
-		RequestWorker()=delete;
-		RequestWorker(QString character, QString season);
+public:
+    RequestWorker() = delete;
+    RequestWorker(QString character, QString season);
 
-		void updateWorker(QString character, QString season);
+    void updateWorker(QString character, QString season);
 
-		~RequestWorker();
+    ~RequestWorker();
 
-	public slots: 
-		void process();
+public slots:
+    void process();
 
-	signals: 
-		void finished(QList<Quote> quotes);
+signals:
+    void finished(QList<Quote> quotes);
 };

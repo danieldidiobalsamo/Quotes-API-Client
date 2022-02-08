@@ -7,24 +7,21 @@
 class QNetworkAccessManager;
 class Quote;
 
-
 // singleton
-class QuotesAPI : public QObject
-{
-	Q_OBJECT
+class QuotesAPI : public QObject {
+    Q_OBJECT
 
-	private: 
+private:
+    static QuotesAPI* _quotesAPI;
+    const QString _rawAPIURL = QString("https://kaamelott.chaudie.re/api");
 
-		static QuotesAPI *_quotesAPI;
-		const QString _rawAPIURL = QString("https://kaamelott.chaudie.re/api");
+    QuotesAPI();
 
-		QuotesAPI();
+public:
+    ~QuotesAPI();
+    QuotesAPI(const QuotesAPI& manager) = delete;
+    QuotesAPI& operator=(const QuotesAPI& manager) = delete;
 
-	public : 
-		~QuotesAPI();
-		QuotesAPI(const QuotesAPI& manager)=delete;
-		QuotesAPI& operator=(const QuotesAPI& manager)=delete;
-
-		static QuotesAPI* getInstance();
-		QList<Quote> search(QString character, QString season);
+    static QuotesAPI* getInstance();
+    QList<Quote> search(QString character, QString season);
 };
