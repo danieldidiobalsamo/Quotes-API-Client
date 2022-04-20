@@ -12,10 +12,10 @@ private:
 public:
     Quote() = delete;
     Quote(const QString character, const QString text, const QString season);
-    Quote(const Quote& quote);
+    Quote(const Quote& quote) = default;
 
-    Quote& operator=(const Quote& quote);
-    ~Quote();
+    Quote& operator=(const Quote& quote) = default;
+    ~Quote() = default;
 
     QString getCharacter() const;
     QString getText() const;

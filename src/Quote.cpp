@@ -7,30 +7,6 @@ Quote::Quote(const QString character, const QString text, const QString season)
 {
 }
 
-Quote::Quote(const Quote& quote)
-{
-    _character = quote._character;
-    _text = quote._text;
-    _season = quote._season;
-}
-
-Quote& Quote::operator=(const Quote& quote)
-{
-    if (this == &quote)
-        return *this;
-    else {
-        _character = quote._character;
-        _text = quote._text;
-        _season = quote._season;
-
-        return *this;
-    }
-}
-
-Quote::~Quote()
-{
-}
-
 QString Quote::getCharacter() const
 {
     return _character;
