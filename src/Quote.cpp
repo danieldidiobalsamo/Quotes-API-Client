@@ -1,10 +1,10 @@
 #include "Quote.hpp"
 
 Quote::Quote(const QString character, const QString text, const QString season)
+    : _character(character)
+    , _text(text)
+    , _season(season)
 {
-    _character = character;
-    _text = text;
-    _season = season;
 }
 
 Quote::Quote(const Quote& quote)
